@@ -45,7 +45,13 @@
 
                     <a href="#">Categories</a>
                     <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
+                        @if (!empty($categories) && $categories->count() > 0)
+                            @foreach ($categories as $category)
+                                <li><a href="#">{{ $category->name }}</a></li>
+                            @endforeach
+                        @endif
+
+                        {{-- <li><a href="#">Menu One</a></li>
                         <li><a href="#">Menu Two</a></li>
                         <li><a href="#">Menu Three</a></li>
                         <li class="has-children">
@@ -55,7 +61,7 @@
                                 <li><a href="#">Menu Two</a></li>
                                 <li><a href="#">Menu Three</a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
                 <li><a href="{{ route('about') }}">About</a></li>

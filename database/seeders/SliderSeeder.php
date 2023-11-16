@@ -14,7 +14,7 @@ class SliderSeeder extends Seeder
     public function run(): void
     {
         Slider::create([
-            'image' => 'https://fakeimg.pl/250x100/',
+            'image' => 'https://fakeimg.pl/350x200/?text=HomePage&font=lobster',
             'name' => 'You are welcome to the opening',
             'content' => 'E-Commerce is opening on December 10th.',
             'link' => 'products',
