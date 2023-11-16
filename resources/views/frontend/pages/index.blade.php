@@ -1,7 +1,7 @@
 @extends('frontend.layout.layout')
 
 @section('content')
-    <div class="site-blocks-cover" style="background-image: url(images/hero_1.jpg);" data-aos="fade">
+    <div class="site-blocks-cover" style="background-image: url({{ asset($slider->image) }});" data-aos="fade">
         <div class="container">
             <div class="row align-items-start align-items-md-center justify-content-end">
                 <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
@@ -58,7 +58,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
-                    <a class="block-2-item" href="#">
+                    <a class="block-2-item" href="{{route('womenswear')}}">
                         <figure class="image">
                             <img src="images/women.jpg" alt="" class="img-fluid">
                         </figure>
@@ -69,7 +69,7 @@
                     </a>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
-                    <a class="block-2-item" href="#">
+                    <a class="block-2-item" href="{{route('childrenswear')}}">
                         <figure class="image">
                             <img src="images/children.jpg" alt="" class="img-fluid">
                         </figure>
@@ -80,7 +80,7 @@
                     </a>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
-                    <a class="block-2-item" href="#">
+                    <a class="block-2-item" href="{{route('menswear')}}">
                         <figure class="image">
                             <img src="images/men.jpg" alt="" class="img-fluid">
                         </figure>
@@ -183,12 +183,10 @@
                             class="img-fluid rounded"></a>
                 </div>
                 <div class="col-md-12 col-lg-5 text-center pl-md-5">
-                    <h2><a href="#">50% less in all items</a></h2>
-                    <p class="post-meta mb-4">By <a href="#">Carl Smith</a> <span
-                            class="block-8-sep">&bullet;</span> September 3, 2018</p>
+                    <h2>50% less in all items</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam iste dolor accusantium
                         facere corporis ipsum animi deleniti fugiat. Ex, veniam?</p>
-                    <p><a href="#" class="btn btn-primary btn-sm">Shop Now</a></p>
+                    <p><a href="{{route('onsaleproducts')}}" class="btn btn-primary btn-sm">On Sale Products</a></p>
                 </div>
             </div>
         </div>
