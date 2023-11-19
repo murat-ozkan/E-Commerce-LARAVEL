@@ -22,32 +22,29 @@
             <div class="row">
                 <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="">
                     <div class="icon mr-4 align-self-start">
-                        <span class="icon-truck"></span>
+                        <span class="{{ $about->text_1_icon }}"></span>
                     </div>
                     <div class="text">
-                        <h2 class="text-uppercase">Free Shipping</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam.
-                            Integer accumsan tincidunt fringilla.</p>
+                        <h2 class="text-uppercase">{{ $about->text_1 }}</h2>
+                        <p>{{ $about->text_1_content }}</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="icon mr-4 align-self-start">
-                        <span class="icon-refresh2"></span>
+                        <span class="{{ $about->text_2_icon }}"></span>
                     </div>
                     <div class="text">
-                        <h2 class="text-uppercase">Free Returns</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam.
-                            Integer accumsan tincidunt fringilla.</p>
+                        <h2 class="text-uppercase">{{ $about->text_2 }}</h2>
+                        <p>{{ $about->text_2_content }}</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="icon mr-4 align-self-start">
-                        <span class="icon-help"></span>
+                        <span class="{{ $about->text_3_icon }}"></span>
                     </div>
                     <div class="text">
-                        <h2 class="text-uppercase">Customer Support</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam.
-                            Integer accumsan tincidunt fringilla.</p>
+                        <h2 class="text-uppercase">{{ $about->text_3 }}</h2>
+                        <p>{{ $about->text_3_content }}</p>
                     </div>
                 </div>
             </div>
@@ -58,7 +55,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
-                    <a class="block-2-item" href="{{route('womenswear')}}">
+                    <a class="block-2-item" href="{{ route('womenswear') }}">
                         <figure class="image">
                             <img src="images/women.jpg" alt="" class="img-fluid">
                         </figure>
@@ -69,7 +66,7 @@
                     </a>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
-                    <a class="block-2-item" href="{{route('childrenswear')}}">
+                    <a class="block-2-item" href="{{ route('childrenswear') }}">
                         <figure class="image">
                             <img src="images/children.jpg" alt="" class="img-fluid">
                         </figure>
@@ -80,7 +77,7 @@
                     </a>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
-                    <a class="block-2-item" href="{{route('menswear')}}">
+                    <a class="block-2-item" href="{{ route('menswear') }}">
                         <figure class="image">
                             <img src="images/men.jpg" alt="" class="img-fluid">
                         </figure>
@@ -186,7 +183,7 @@
                     <h2>50% less in all items</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam iste dolor accusantium
                         facere corporis ipsum animi deleniti fugiat. Ex, veniam?</p>
-                    <p><a href="{{route('onsaleproducts')}}" class="btn btn-primary btn-sm">On Sale Products</a></p>
+                    <p><a href="{{ route('onsaleproducts') }}" class="btn btn-primary btn-sm">On Sale Products</a></p>
                 </div>
             </div>
         </div>

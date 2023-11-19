@@ -42,26 +42,24 @@
             <ul class="site-menu js-clone-nav d-none d-md-block">
                 <li class="active"><a href="{{ route('home') }}">Home</a></li>
                 <li class="has-children">
-
                     <a href="#">Categories</a>
                     <ul class="dropdown">
                         @if (!empty($categories) && $categories->count() > 0)
                             @foreach ($categories as $category)
-                                <li><a href="#">{{ $category->name }}</a></li>
+                                @if ($category->cat_ust == null)
+                                    <li class="has-children">
+                                        <a href="#">{{ $category->name }}</a>
+                                        <ul class="dropdown">
+                                            @foreach ($categories as $subCategory)
+                                                @if ($subCategory->cat_ust == $category->id)
+                                                    <li><a href="#">{{ $subCategory->name }}</a></li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @endif
                             @endforeach
                         @endif
-
-                        {{-- <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                        <li class="has-children">
-                            <a href="#">Sub Menu</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Menu One</a></li>
-                                <li><a href="#">Menu Two</a></li>
-                                <li><a href="#">Menu Three</a></li>
-                            </ul>
-                        </li> --}}
                     </ul>
                 </li>
                 <li><a href="{{ route('about') }}">About</a></li>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use App\Models\Category;
 use App\Models\Slider;
 use Illuminate\Http\Request;
@@ -15,7 +16,11 @@ class PageHomeController extends Controller
         $categories = Category::where('status', '1')->get(); // bütün veriler gelecek. foreach kullanmak lazım diğer tarafta.
         //! Burada categories kısmını middleware kullanarak yapacağız ileride. Amaç datayı bütün sayfalarda kullanabilmek.
         //! Şu anda sadece Home pagede kullanıyoruz.
+
         $title = 'Home'; // Lazım olursa
-        return view('frontend.pages.index', compact('slider', 'categories', 'title'));
+
+        $about = About::where('id', 1)->first();
+
+        return view('frontend.pages.index', compact('slider', 'categories', 'title', 'about'));
     }
 }
