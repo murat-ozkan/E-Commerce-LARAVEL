@@ -15,16 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageHomeController::class, 'home'])->name('home');
+Route::group(['middleware' => 'sitesetting'], function () {
+    Route::get('/', [PageHomeController::class, 'home'])->name('home');
 
-Route::get('/about', [PageController::class, 'about'])->name('about');
-Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+    Route::get('/about', [PageController::class, 'about'])->name('about');
+    Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
-Route::get('/products', [PageController::class, 'products'])->name('products');
-Route::get('/products/menswear', [PageController::class, 'products'])->name('menswear');
-Route::get('/products/womenswear', [PageController::class, 'products'])->name('womenswear');
-Route::get('/products/childrenswear', [PageController::class, 'products'])->name('childrenswear');
-Route::get('/onsaleproducts', [PageController::class, 'onsaleproducts'])->name('onsaleproducts');
+    Route::get('/products', [PageController::class, 'products'])->name('products');
+    Route::get('/products/menswear', [PageController::class, 'products'])->name('menswear');
+    Route::get('/products/womenswear', [PageController::class, 'products'])->name('womenswear');
+    Route::get('/products/childrenswear', [PageController::class, 'products'])->name('childrenswear');
+    Route::get('/onsaleproducts', [PageController::class, 'onsaleproducts'])->name('onsaleproducts');
 
-Route::get('/product/detail', [PageController::class, 'productdetail'])->name('productdetail');
-Route::get('/cart', [PageController::class, 'cart'])->name('cart');
+    Route::get('/product/detail', [PageController::class, 'productdetail'])->name('productdetail');
+
+    Route::get('/cart', [PageController::class, 'cart'])->name('cart');
+});
