@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\PageHomeController;
+use App\Http\Controllers\AjaxController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,9 @@ Route::group(['middleware' => 'sitesetting'], function () {
     Route::get('/', [PageHomeController::class, 'home'])->name('home');
 
     Route::get('/about', [PageController::class, 'about'])->name('about');
+
     Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+    Route::post('/contact/create', [AjaxController::class, 'createcontact'])->name('create.contact');
 
     Route::get('/products', [PageController::class, 'products'])->name('products');
     Route::get('/products/menswear', [PageController::class, 'products'])->name('menswear');
