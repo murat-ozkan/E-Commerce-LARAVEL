@@ -4,7 +4,7 @@
     <div class="bg-light py-3">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong
+                <div class="col-md-12 mb-0"><a href="{{ route('home') }}">Home</a> <span class="mx-2 mb-0">/</span> <strong
                         class="text-black">Contact</strong></div>
             </div>
         </div>
@@ -19,6 +19,11 @@
                 <div class="col-md-7">
                     @if (session()->has('success'))
                         <div class="alert alert-success">{{ session()->get('success') }}</div>
+                    @endif
+                    @if (count($errors))
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-success">{{ $error }}</div>
+                        @endforeach
                     @endif
                     <form action="{{ route('create.contact') }}" method="post">
                         @csrf
@@ -39,14 +44,16 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <label for="c_subject" class="text-black">Subject </label>
+                                    <label for="c_subject" class="text-black">Subject <span
+                                            class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="c_subject" name="subject">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                    <label for="c_message" class="text-black">Message </label>
+                                    <label for="c_message" class="text-black">Message <span
+                                            class="text-danger">*</span></label>
                                     <textarea name="message" id="c_message" cols="30" rows="7" class="form-control"></textarea>
                                 </div>
                             </div>
