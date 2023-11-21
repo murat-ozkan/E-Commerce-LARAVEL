@@ -11,16 +11,17 @@ class PageController extends Controller
 {
     public function products()
     {
-        $products = Product::where('status', '1')->get();
+        $products = Product::where('status', '1')->paginate(1);
         return view('frontend.pages.products', compact('products'));
     }
     public function onsaleproducts()
     {
         return view('frontend.pages.products');
     }
-    public function productdetail()
+    public function productdetail($slug)
     {
-        return view('frontend.pages.product');
+        $product = Product::where('slug', $slug)->first();
+        return view('frontend.pages.product', compact('product'));
     }
     public function about()
     {

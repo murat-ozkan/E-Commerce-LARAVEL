@@ -56,11 +56,14 @@
                                 <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                                     <div class="block-4 text-center border">
                                         <figure class="block-4-image">
-                                            <a href="shop-single.html"><img src="{{ asset($product->image) }}"
-                                                    alt="Image placeholder" class="img-fluid"></a>
+                                            <a href="{{ route('productdetail', $product->slug) }}"><img
+                                                    src="{{ asset($product->image) }}" alt="Image placeholder"
+                                                    class="img-fluid"></a>
                                         </figure>
                                         <div class="block-4-text p-4">
-                                            <h3><a href="shop-single.html">{{ $product->short_text }}</a></h3>
+                                            <h3><a
+                                                    href="{{ route('productdetail', $product->slug) }}">{{ $product->short_text }}</a>
+                                            </h3>
                                             <p class="mb-0">{!! $product->content !!}</p>
                                             <p class="text-primary font-weight-bold">${{ $product->price, 0 }}</p>
                                         </div>
@@ -72,6 +75,7 @@
 
                     </div>
                     <div class="row" data-aos="fade-up">
+                        {{ $products->links('pagination::bootstrap-5') }}
                         <div class="col-md-12 text-center">
                             <div class="site-block-27">
                                 <ul>

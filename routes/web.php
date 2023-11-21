@@ -31,7 +31,7 @@ Route::group(['middleware' => 'sitesetting'], function () {
 
     Route::get('/onsaleproducts', [PageController::class, 'onsaleproducts'])->name('onsaleproducts');
 
-    Route::get('/product/detail', [PageController::class, 'productdetail'])->name('productdetail');
+    Route::get('/product/{slug}', [PageController::class, 'productdetail'])->name('productdetail');
 
     Route::get('/cart', [PageController::class, 'cart'])->name('cart');
 });
