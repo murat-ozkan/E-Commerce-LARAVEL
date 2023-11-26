@@ -29,10 +29,14 @@
                                         aria-expanded="false">
                                         Latest
                                     </button>
+
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                                        <a class="dropdown-item" href="#">Men</a>
-                                        <a class="dropdown-item" href="#">Women</a>
-                                        <a class="dropdown-item" href="#">Children</a>
+                                        @if (!empty($categories) && $categories->count() > 0)
+                                            @foreach ($categories as $category)
+                                                <a class="dropdown-item" href="#">{{ $category->name }}</a>
+                                            @endforeach
+                                        @endif
+
                                     </div>
                                 </div>
                                 <div class="btn-group">
@@ -75,8 +79,10 @@
 
                     </div>
                     <div class="row" data-aos="fade-up">
-                        {{ $products->links('pagination::bootstrap-5') }}
-                        <div class="col-md-12 text-center">
+                        {{ $products->withQueryString()->links('pagination::bootstrap-5') }}
+                        {{-- ! withQueryString() sayesinde sonraki veya önceki sayfalar da aynı filtreyi kullanacak. --}}
+
+                        {{-- <div class="col-md-12 text-center">
                             <div class="site-block-27">
                                 <ul>
                                     <li><a href="#">&lt;</a></li>
@@ -88,7 +94,7 @@
                                     <li><a href="#">&gt;</a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -96,12 +102,12 @@
                     <div class="border p-4 rounded mb-4">
                         <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
                         <ul class="list-unstyled mb-0">
-                            <li class="mb-1"><a href="#" class="d-flex"><span>Men</span> <span
-                                        class="text-black ml-auto">(2,220)</span></a></li>
-                            <li class="mb-1"><a href="#" class="d-flex"><span>Women</span> <span
-                                        class="text-black ml-auto">(2,550)</span></a></li>
-                            <li class="mb-1"><a href="#" class="d-flex"><span>Children</span> <span
-                                        class="text-black ml-auto">(2,124)</span></a></li>
+                            @if (!empty($categories) && $categories->count() > 0)
+                                @foreach ($categories as $category)
+                                    <li class="mb-1"><a href="#" class="d-flex"><span>{{ $category->name }}</span>
+                                            <span class="text-black ml-auto">({{ $category->items_count }})</span></a></li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
 
@@ -115,40 +121,28 @@
 
                         <div class="mb-4">
                             <h3 class="mb-3 h6 text-uppercase text-black d-block">Size</h3>
-                            <label for="s_sm" class="d-flex">
-                                <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small
-                                    (2,319)</span>
-                            </label>
-                            <label for="s_md" class="d-flex">
-                                <input type="checkbox" id="s_md" class="mr-2 mt-1"> <span class="text-black">Medium
-                                    (1,282)</span>
-                            </label>
-                            <label for="s_lg" class="d-flex">
-                                <input type="checkbox" id="s_lg" class="mr-2 mt-1"> <span class="text-black">Large
-                                    (1,392)</span>
-                            </label>
+                            @if (!empty('sizelists'))
+                                @foreach ($sizelists as $sizelist)
+                                    <label for="s_sm" class="d-flex">
+                                        <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span
+                                            class="text-black">{{ $sizelist }}
+                                        </span>
+                                    </label>
+                                @endforeach
+                            @endif
                         </div>
 
                         <div class="mb-4">
                             <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
-                            <a href="#" class="d-flex color-item align-items-center">
-                                <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span
-                                    class="text-black">Red (2,429)</span>
-                            </a>
-                            <a href="#" class="d-flex color-item align-items-center">
-                                <span class="bg-success color d-inline-block rounded-circle mr-2"></span> <span
-                                    class="text-black">Green (2,298)</span>
-                            </a>
-                            <a href="#" class="d-flex color-item align-items-center">
-                                <span class="bg-info color d-inline-block rounded-circle mr-2"></span> <span
-                                    class="text-black">Blue (1,075)</span>
-                            </a>
-                            <a href="#" class="d-flex color-item align-items-center">
-                                <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span
-                                    class="text-black">Purple (1,075)</span>
-                            </a>
+                            @if (!empty('colorslists'))
+                                @foreach ($colorlists as $color)
+                                    <a href="#" class="d-flex color-item align-items-center">
+                                        <span class="bg-dark color d-inline-block rounded-circle mr-2"></span> <span
+                                            class="text-black">{{ $color }}</span>
+                                    </a>
+                                @endforeach
+                            @endif
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -203,4 +197,11 @@
 
         </div>
     </div>
+@endsection
+
+@section('customjs')
+    <script>
+        var minprice = "{{ $minprice }}";
+        var maxprice = "{{ $maxprice }}";
+    </script>
 @endsection
