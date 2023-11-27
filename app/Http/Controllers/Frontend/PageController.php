@@ -10,8 +10,10 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function products(Request $request)
+    public function products(Request $request, $slug = null)
     {
+        $category = request()->segment(1) ?? null;
+
         $size = $request->size ?? null;
         $color = $request->color ?? null;
         $startPrice = $request->startPrice ?? null;
@@ -33,7 +35,14 @@ class PageController extends Controller
                 }
                 return $q;
             })
-            ->with('category:id,name,slug');
+            ->with('category:id,name,slug')
+
+            ->whereHas('category', function ($q) use ($category, $slug) {
+                if (!empty($slug)) {
+                    $q->where('slug', $slug);
+                }
+                return $q;
+            });
         //! tablolar arası ilişki kuruldu. Product içinde hasOne. Sade olsun diye id, name, slug alındı sadece. boşluk bırakma!
 
 
@@ -46,11 +55,11 @@ class PageController extends Controller
 
         $products = $products->orderBy($order, $short)->paginate(10);
 
-        $categories = Category::where('status', '1')->where('cat_ust', null)->withCount('items')->get();
+        // $categories = Category::where('status', '1')->where('cat_ust', null)->withCount('items')->get();
         //! with('items') category modeldeki onetomany ilişki fonksiyonu
         //! items sayısı da lazım olduğu için withCount() kullanabiliriz
 
-        return view('frontend.pages.products', compact('products', 'categories', 'minprice', 'maxprice', 'sizelists', 'colorlists'));
+        return view('frontend.pages.products', compact('products', 'minprice', 'maxprice', 'sizelists', 'colorlists'));
     }
     public function onsaleproducts()
     {
@@ -58,8 +67,17 @@ class PageController extends Controller
     }
     public function productdetail($slug)
     {
-        $product = Product::where('slug', $slug)->first();
-        return view('frontend.pages.product', compact('product'));
+        $product = Product::where('slug', $slug)->where('status', '1')->firstOrFail();
+
+        //? Burası üründetay sayfasında altta yer alan diğer ürünler kısmı
+        $products = Product::where('id', '!=', $product->id) //? Mevcut ürün haricindekilerden getir
+            ->where('category_id', $product->category_id) //? Aynı kategoriden getir
+            ->where('status', '1')
+            ->limit(6)
+            ->get();
+
+
+        return view('frontend.pages.product', compact('product', 'products'));
     }
     public function about()
     {

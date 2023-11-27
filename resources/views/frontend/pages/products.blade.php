@@ -91,8 +91,9 @@
                         <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
                         <ul class="list-unstyled mb-0">
                             @if (!empty($categories) && $categories->count() > 0)
-                                @foreach ($categories as $category)
-                                    <li class="mb-1"><a href="#" class="d-flex"><span>{{ $category->name }}</span>
+                                @foreach ($categories->where('cat_ust', null) as $category)
+                                    <li class="mb-1"><a href="{{ route($category->slug . 'products') }}"
+                                            class="d-flex"><span>{{ $category->name }}</span>
                                             <span class="text-black ml-auto">({{ $category->items_count }})</span></a></li>
                                 @endforeach
                             @endif
@@ -145,7 +146,7 @@
                         </div>
                         <div class="row">
                             @if (!empty('categories'))
-                                @foreach ($categories as $category)
+                                @foreach ($categories->where('cat_ust', null) as $category)
                                     <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
                                         <a class="block-2-item" href="{{ route($category->slug . 'products') }}">
                                             <figure class="image">
