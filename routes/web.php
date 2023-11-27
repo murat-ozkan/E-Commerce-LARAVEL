@@ -25,9 +25,9 @@ Route::group(['middleware' => 'sitesetting'], function () {
     Route::post('/contact/create', [AjaxController::class, 'createcontact'])->name('create.contact');
 
     Route::get('/products', [PageController::class, 'products'])->name('products');
-    Route::get('/products/menswear', [PageController::class, 'products'])->name('menswear');
-    Route::get('/products/womenswear', [PageController::class, 'products'])->name('womenswear');
-    Route::get('/products/childrenswear', [PageController::class, 'products'])->name('childrenswear');
+    Route::get('/products/men/{slug?}', [PageController::class, 'products'])->name('menproducts');
+    Route::get('/products/women/{slug?}', [PageController::class, 'products'])->name('womenproducts');
+    Route::get('/products/children/{slug?}', [PageController::class, 'products'])->name('childrenproducts');
 
     Route::get('/onsaleproducts', [PageController::class, 'onsaleproducts'])->name('onsaleproducts');
 

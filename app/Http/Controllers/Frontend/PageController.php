@@ -16,6 +16,8 @@ class PageController extends Controller
         $color = $request->color ?? null;
         $startPrice = $request->startPrice ?? null;
         $endPrice = $request->endPrice  ?? null;
+        $order = $request->order ?? 'id';
+        $short = $request->short ?? 'desc';
 
         $products = Product::where('status', '1') //! Burası urlden gelen sorguya göre değerleri return ediyor
             ->select(['id', 'name', 'slug', 'size', 'color', 'price', 'category_id', 'image']) //! Gelen veriyi azaltalım, sınırlayalım.
@@ -42,7 +44,7 @@ class PageController extends Controller
 
         $colorlists = Product::where('status', '1')->groupBy('color')->pluck('color')->toArray(); //! plusk kullanınca get yerine toArray kullandık. Anlamadım.
 
-        $products = $products->paginate(1);
+        $products = $products->orderBy($order, $short)->paginate(10);
 
         $categories = Category::where('status', '1')->where('cat_ust', null)->withCount('items')->get();
         //! with('items') category modeldeki onetomany ilişki fonksiyonu
