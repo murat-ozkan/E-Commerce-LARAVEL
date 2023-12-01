@@ -45,21 +45,17 @@
                     <a href="#">Categories</a>
                     <ul class="dropdown">
                         @if (!empty($categories) && $categories->count() > 0)
-                            @foreach ($categories as $category)
-                                @if ($category->cat_ust == null)
-                                    <li class="has-children">
-                                        <a href="{{ route($category->slug . 'products') }}">{{ $category->name }}</a>
-                                        <ul class="dropdown">
-                                            @foreach ($categories as $subCategory)
-                                                @if ($subCategory->cat_ust == $category->id)
-                                                    <li><a
-                                                            href="{{ route($category->slug . 'products', $subCategory->slug) }}">{{ $subCategory->name }}</a>
-                                                    </li>
-                                                @endif
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                @endif
+                            @foreach ($categories->where('cat_ust', null) as $category)
+                                <li class="has-children">
+                                    <a href="{{ route($category->slug . 'products') }}">{{ $category->name }}</a>
+                                    <ul class="dropdown">
+                                        @foreach ($category->subcategory as $subCategory)
+                                            <li><a
+                                                    href="{{ route($category->slug . 'products', $subCategory->slug) }}">{{ $subCategory->name }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
                             @endforeach
                         @endif
                     </ul>

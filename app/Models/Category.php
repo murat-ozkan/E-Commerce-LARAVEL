@@ -29,6 +29,9 @@ class Category extends Model
         return $this->hasMany(Product::class, 'category_id', 'id'); //! Product tablosundaki category_id ve de id(hangi tablodan bilmiyorum)
     }
 
+    public function subcategory () {
+        return $this->hasMany(Category::class, 'cat_ust', 'id');
+    }
 
     public function sluggable(): array
     {

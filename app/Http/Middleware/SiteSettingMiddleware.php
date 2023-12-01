@@ -18,7 +18,10 @@ class SiteSettingMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $settings = SiteSetting::pluck('data', 'name');
-        $categories = Category::where('status', '1')->withCount('items')->get(); // bütün veriler gelecek. foreach kullanmak lazım diğer tarafta.
+        $categories = Category::where('status', '1')
+        ->with('subcategory')
+        ->withCount('items')
+        ->get(); // bütün veriler gelecek. foreach kullanmak lazım diğer tarafta.
 
         view()->share(['settings' => $settings, 'categories' => $categories]);
         return $next($request);

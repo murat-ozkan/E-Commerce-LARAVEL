@@ -12,7 +12,7 @@ class PageController extends Controller
 {
     public function products(Request $request, $slug = null)
     {
-        $category = request()->segment(1) ?? null;
+        $category = request()->segment(1) ?? null; //* URLdeki ilk kısım buradan gelir (localhost/x/y/). Yani category. Yoksa Null.
 
         $size = $request->size ?? null;
         $color = $request->color ?? null;
@@ -36,14 +36,13 @@ class PageController extends Controller
                 return $q;
             })
             ->with('category:id,name,slug')
-
             ->whereHas('category', function ($q) use ($category, $slug) {
                 if (!empty($slug)) {
                     $q->where('slug', $slug);
                 }
                 return $q;
             });
-        //! tablolar arası ilişki kuruldu. Product içinde hasOne. Sade olsun diye id, name, slug alındı sadece. boşluk bırakma!
+        //! tablolar arası ilişki kuruldu. Product içinde hasOne. Sade olsun diye id, name, slug alındı sadece. (boşluk bırakma!)
 
 
         $minprice = $products->min('price');
@@ -67,7 +66,9 @@ class PageController extends Controller
     }
     public function productdetail($slug)
     {
-        $product = Product::where('slug', $slug)->where('status', '1')->firstOrFail();
+        $product = Product::where('slug', $slug)
+        ->where('status', '1')
+        ->firstOrFail(); //* Böyle bir slug yoksa hata ver
 
         //? Burası üründetay sayfasında altta yer alan diğer ürünler kısmı
         $products = Product::where('id', '!=', $product->id) //? Mevcut ürün haricindekilerden getir
