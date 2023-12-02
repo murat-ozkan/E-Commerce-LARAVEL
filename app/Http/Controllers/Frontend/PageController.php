@@ -19,7 +19,7 @@ class PageController extends Controller
         $startPrice = $request->startPrice ?? null;
         $endPrice = $request->endPrice  ?? null;
         $order = $request->order ?? 'id';
-        $short = $request->short ?? 'desc';
+        $sort = $request->sort ?? 'desc';
 
         $products = Product::where('status', '1') //! Burası urlden gelen sorguya göre değerleri return ediyor
             ->select(['id', 'name', 'slug', 'size', 'color', 'price', 'category_id', 'image']) //! Gelen veriyi azaltalım, sınırlayalım.
@@ -48,11 +48,11 @@ class PageController extends Controller
         $minprice = $products->min('price');
         $maxprice = $products->max('price');
 
-        $sizelists = Product::where('status', '1')->groupBy('size')->pluck('size')->toArray(); //! plusk kullanınca get yerine toArray kullandık. Anlamadım.
+        $sizelists = Product::where('status', '1')->groupBy('size')->pluck('size')->toArray(); //! pluck kullanınca get yerine toArray kullandık. Anlamadım.
 
-        $colorlists = Product::where('status', '1')->groupBy('color')->pluck('color')->toArray(); //! plusk kullanınca get yerine toArray kullandık. Anlamadım.
+        $colorlists = Product::where('status', '1')->groupBy('color')->pluck('color')->toArray(); //! pluck kullanınca get yerine toArray kullandık. Anlamadım.
 
-        $products = $products->orderBy($order, $short)->paginate(10);
+        $products = $products->orderBy($order, $sort)->paginate(15);
 
         // $categories = Category::where('status', '1')->where('cat_ust', null)->withCount('items')->get();
         //! with('items') category modeldeki onetomany ilişki fonksiyonu
@@ -67,8 +67,8 @@ class PageController extends Controller
     public function productdetail($slug)
     {
         $product = Product::where('slug', $slug)
-        ->where('status', '1')
-        ->firstOrFail(); //* Böyle bir slug yoksa hata ver
+            ->where('status', '1')
+            ->firstOrFail(); //* Böyle bir slug yoksa hata ver
 
         //? Burası üründetay sayfasında altta yer alan diğer ürünler kısmı
         $products = Product::where('id', '!=', $product->id) //? Mevcut ürün haricindekilerden getir

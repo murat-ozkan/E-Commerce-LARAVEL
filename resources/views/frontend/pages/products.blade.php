@@ -47,8 +47,9 @@
                             @foreach ($products as $product)
                                 <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                                     <div class="block-4 text-center border">
+                                        {{ $product->short_text }}
                                         <figure class="block-4-image">
-                                            <a href="{{ route('productdetail', $product->slug) }}"><img
+                                            <a href="{{ route('productdetail', $product->slug) }}">{{ $product->name }}<img
                                                     src="{{ asset($product->image) }}" alt="Image placeholder"
                                                     class="img-fluid"></a>
                                         </figure>
@@ -62,9 +63,9 @@
                                     </div>
                                 </div>
                             @endforeach
+                        @else
+                            <p>Ürün bulunamadı!</p>
                         @endif
-
-
                     </div>
                     <div class="row" data-aos="fade-up">
                         {{ $products->withQueryString()->links('pagination::bootstrap-5') }}
