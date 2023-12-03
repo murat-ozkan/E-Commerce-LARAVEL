@@ -22,42 +22,49 @@
                     {!! $product->content ?? '' !!}
 
                     <p><strong class="text-primary h4">${{ number_format($product->price, 2) }}</strong></p>
-                    <div class="mb-1 d-flex">
-                        <label for="option-sm" class="d-flex mr-3 mb-3">
-                            <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio"
-                                    id="option-sm" name="shop-sizes"></span> <span
-                                class="d-inline-block text-black">Small</span>
-                        </label>
-                        <label for="option-md" class="d-flex mr-3 mb-3">
-                            <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio"
-                                    id="option-md" name="shop-sizes"></span> <span
-                                class="d-inline-block text-black">Medium</span>
-                        </label>
-                        <label for="option-lg" class="d-flex mr-3 mb-3">
-                            <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio"
-                                    id="option-lg" name="shop-sizes"></span> <span
-                                class="d-inline-block text-black">Large</span>
-                        </label>
-                        <label for="option-xl" class="d-flex mr-3 mb-3">
-                            <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio"
-                                    id="option-xl" name="shop-sizes"></span> <span class="d-inline-block text-black"> Extra
-                                Large</span>
-                        </label>
-                    </div>
-                    <div class="mb-5">
-                        <div class="input-group mb-3" style="max-width: 120px;">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                            </div>
-                            <input type="text" class="form-control text-center" value="1" placeholder=""
-                                aria-label="Example text with button addon" aria-describedby="button-addon1">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                            </div>
-                        </div>
 
-                    </div>
-                    <p><a href="cart.html" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
+                    <form action="{{ route('cart.add') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                        <div class="mb-1 d-flex">
+                            <label for="option-sm" class="d-flex mr-3 mb-3">
+                                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input
+                                        type="radio" id="option-sm" value="S" name="size"></span> <span
+                                    class="d-inline-block text-black">Small</span>
+                            </label>
+                            <label for="option-md" class="d-flex mr-3 mb-3">
+                                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input
+                                        type="radio" id="option-md" value="M" name="size"></span> <span
+                                    class="d-inline-block text-black">Medium</span>
+                            </label>
+                            <label for="option-lg" class="d-flex mr-3 mb-3">
+                                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input
+                                        type="radio" id="option-lg" value="L" name="size"></span> <span
+                                    class="d-inline-block text-black">Large</span>
+                            </label>
+                            <label for="option-xl" class="d-flex mr-3 mb-3">
+                                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input
+                                        type="radio" id="option-xl" value="XL" name="size"></span> <span
+                                    class="d-inline-block text-black"> Extra
+                                    Large</span>
+                            </label>
+                        </div>
+                        <div class="mb-5">
+                            <div class="input-group mb-3" style="max-width: 120px;">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                </div>
+                                <input type="text" class="form-control text-center" value="1" name="qty"
+                                    aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <p><button type="submit" class="buy-now btn btn-sm btn-primary">Add To Cart</button></p>
+                    </form>
 
                 </div>
             </div>

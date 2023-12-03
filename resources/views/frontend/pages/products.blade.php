@@ -59,6 +59,8 @@
                                             </h3>
                                             <p class="mb-0">{!! $product->content !!}</p>
                                             <p class="text-primary font-weight-bold">${{ $product->price, 0 }}</p>
+                                            <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
+
                                         </div>
                                     </div>
                                 </div>

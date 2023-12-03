@@ -21,21 +21,23 @@ class ProductFactory extends Factory
 
     public function definition(): array
     {
-        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        $name = substr(str_shuffle($characters), 0, 20);
         $category_id = random_int(1, 9);
-        $short_text = substr(str_shuffle($characters), 0, 20);
-        $price = random_int(0, 5000);
-        $sizelist = ['XS', 'S', 'M', 'L', 'XL'];
-        $size = $sizelist[random_int(0, 4)];
+        $sizelist = ['S', 'M', 'L', 'XL'];
         $colorlist = ['White', 'Black', 'Red', 'Blue', 'Yellow'];
+
         $color = $colorlist[random_int(0, 4)];
+        $size = $sizelist[random_int(0, 3)];
+
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $short_text = substr(str_shuffle($characters), 0, 20);
+
+        $price = random_int(0, 5000);
         $qty = random_int(0, 99);
+
         $content = substr(str_shuffle($characters), 0, 20);
 
-
         return [
-            'name' => $name,
+            'name' => $color . ' ' . $size . ' Product',
             'category_id' => $category_id,
             'short_text' => $short_text,
             'price' => $price,

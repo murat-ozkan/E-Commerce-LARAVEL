@@ -16,8 +16,10 @@ class PageController extends Controller
 
         $size = $request->size ?? null;
         $color = $request->color ?? null;
+
         $startPrice = $request->startPrice ?? null;
         $endPrice = $request->endPrice  ?? null;
+
         $order = $request->order ?? 'id';
         $sort = $request->sort ?? 'desc';
 
@@ -52,7 +54,7 @@ class PageController extends Controller
 
         $colorlists = Product::where('status', '1')->groupBy('color')->pluck('color')->toArray(); //! pluck kullanınca get yerine toArray kullandık. Anlamadım.
 
-        $products = $products->orderBy($order, $sort)->paginate(15);
+        $products = $products->orderBy($order, $sort)->paginate(21);
 
         // $categories = Category::where('status', '1')->where('cat_ust', null)->withCount('items')->get();
         //! with('items') category modeldeki onetomany ilişki fonksiyonu
@@ -60,10 +62,12 @@ class PageController extends Controller
 
         return view('frontend.pages.products', compact('products', 'minprice', 'maxprice', 'sizelists', 'colorlists'));
     }
+
     public function onsaleproducts()
     {
         return view('frontend.pages.products');
     }
+
     public function productdetail($slug)
     {
         $product = Product::where('slug', $slug)
@@ -80,17 +84,15 @@ class PageController extends Controller
 
         return view('frontend.pages.product', compact('product', 'products'));
     }
+
     public function about()
     {
         $about = About::where('id', 1)->first();
         return view('frontend.pages.about', compact('about'));
     }
+    
     public function contact()
     {
         return view('frontend.pages.contact');
-    }
-    public function cart()
-    {
-        return view('frontend.pages.cart');
     }
 }
