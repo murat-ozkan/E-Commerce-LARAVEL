@@ -28,24 +28,28 @@
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
 
                         <div class="mb-1 d-flex">
-                            <label for="option-sm" class="d-flex mr-3 mb-3">
+                            <label for="option-s" class="d-flex mr-3 mb-3">
                                 <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input
-                                        type="radio" id="option-sm" value="S" name="size"></span> <span
+                                        type="radio" id="option-s" value="S" name="size"
+                                        {{ $product->size == 'S' ? 'checked' : '' }}></span> <span
                                     class="d-inline-block text-black">Small</span>
                             </label>
-                            <label for="option-md" class="d-flex mr-3 mb-3">
+                            <label for="option-m" class="d-flex mr-3 mb-3">
                                 <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input
-                                        type="radio" id="option-md" value="M" name="size"></span> <span
+                                        type="radio" id="option-m" value="M" name="size"
+                                        {{ $product->size == 'M' ? 'checked' : '' }}></span> <span
                                     class="d-inline-block text-black">Medium</span>
                             </label>
-                            <label for="option-lg" class="d-flex mr-3 mb-3">
+                            <label for="option-l" class="d-flex mr-3 mb-3">
                                 <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input
-                                        type="radio" id="option-lg" value="L" name="size"></span> <span
+                                        type="radio" id="option-l" value="L" name="size"
+                                        {{ $product->size == 'L' ? 'checked' : '' }}></span> <span
                                     class="d-inline-block text-black">Large</span>
                             </label>
                             <label for="option-xl" class="d-flex mr-3 mb-3">
                                 <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input
-                                        type="radio" id="option-xl" value="XL" name="size"></span> <span
+                                        type="radio" id="option-xl" value="XL" name="size"
+                                        {{ $product->size == 'XL' ? 'checked' : '' }}></span> <span
                                     class="d-inline-block text-black"> Extra
                                     Large</span>
                             </label>

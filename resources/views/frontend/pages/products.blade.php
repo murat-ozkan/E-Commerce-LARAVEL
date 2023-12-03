@@ -55,7 +55,7 @@
                                         </figure>
                                         <div class="block-4-text p-4">
                                             <h3><a
-                                                    href="{{ route('productdetail', $product->slug) }}">{{ $product->short_text }}</a>
+                                                    href="{{ route('productdetail', $product->slug) }}">bbbb{{ $product->short_text }}</a>
                                             </h3>
                                             <p class="mb-0">{!! $product->content !!}</p>
                                             <p class="text-primary font-weight-bold">${{ $product->price, 0 }}</p>
