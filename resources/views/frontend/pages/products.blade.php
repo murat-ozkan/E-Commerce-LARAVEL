@@ -42,6 +42,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @if (session()->get('success'))
+                                <div class="alert alert-success">{{ session()->get('success') }}</div>
+                            @endif
+                        </div>
+                    </div>
                     <div class="row mb-5">
                         @if (!empty($products) && $products->count() > 0)
                             @foreach ($products as $product)
@@ -55,11 +62,17 @@
                                         </figure>
                                         <div class="block-4-text p-4">
                                             <h3><a
-                                                    href="{{ route('productdetail', $product->slug) }}">bbbb{{ $product->short_text }}</a>
+                                                    href="{{ route('productdetail', $product->slug) }}">{{ $product->short_text }}</a>
                                             </h3>
                                             <p class="mb-0">{!! $product->content !!}</p>
                                             <p class="text-primary font-weight-bold">${{ $product->price, 0 }}</p>
-                                            <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
+                                            <form action="{{ route('cart.add') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <input type="hidden" name="product_size" value="{{ $product->size }}">
+                                                <button type="submit" class="buy-now btn btn-sm btn-primary">Add To
+                                                    Cart</button>
+                                            </form>
 
                                         </div>
                                     </div>
@@ -150,10 +163,12 @@
                         <div class="row">
                             @if (!empty('categories'))
                                 @foreach ($categories->where('cat_ust', null) as $category)
-                                    <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
+                                    <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade"
+                                        data-aos-delay="">
                                         <a class="block-2-item" href="{{ route($category->slug . 'products') }}">
                                             <figure class="image">
-                                                <img src="{{ asset($category->image) }}" alt="" class="img-fluid">
+                                                <img src="{{ asset($category->image) }}" alt=""
+                                                    class="img-fluid">
                                             </figure>
                                             <div class="text">
                                                 <span class="text-uppercase">Collections</span>

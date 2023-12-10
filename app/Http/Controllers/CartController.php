@@ -22,7 +22,7 @@ class CartController extends Controller
     {
         $productId = $request->product_id;
         $size = $request->size;
-        $qty = $request->qty;
+        $qty = $request->qty ?? 1; //! products sayfasından ekleme yaparken sayı verilemediği için... yoksa 1 olsun.
 
         $product = Product::find($productId); //Product id ile dbden ürün yakaladık
 
@@ -49,7 +49,14 @@ class CartController extends Controller
         return request()->all();
     }
 
-    public function remove()
+    public function remove(Request $request)
     {
+        $productId = $request->product_id;
+        $cartItems = session('cart', []);
+        if (array_key_exists($productId, $cartItems)) {
+            unset($cartItems[$productId]);
+        }
+        session(['cart' => $cartItems]);
+        return back()->withSuccess('Successfully Removed!');
     }
 }
