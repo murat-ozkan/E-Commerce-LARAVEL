@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/'; //! Burayı PanelSettingMiddleware için ben değiştirdim.
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -32,6 +32,9 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/panel.php')); //! Bu 2 saatırı da ben ekledim. web.php ile beraber panel.php görmesi için.
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
