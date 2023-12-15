@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="/index.html">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
@@ -14,9 +14,12 @@
             </a>
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
+                    <li class="nav-item"> <a class="nav-link"
+                            href="{{ asset('backend') }}/pages/ui-features/buttons.html">Buttons</a></li>
+                    <li class="nav-item"> <a class="nav-link"
+                            href="{{ asset('backend') }}/pages/ui-features/dropdowns.html">Dropdowns</a></li>
+                    <li class="nav-item"> <a class="nav-link"
+                            href="{{ asset('backend') }}/pages/ui-features/typography.html">Typography</a>
                     </li>
                 </ul>
             </div>
@@ -30,7 +33,8 @@
             </a>
             <div class="collapse" id="form-elements">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic
+                    <li class="nav-item"><a class="nav-link"
+                            href="{{ asset('backend') }}/pages/forms/basic_elements.html">Basic
                             Elements</a></li>
                 </ul>
             </div>
@@ -43,7 +47,8 @@
             </a>
             <div class="collapse" id="charts">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
+                    <li class="nav-item"> <a class="nav-link"
+                            href="{{ asset('backend') }}/pages/charts/chartjs.html">ChartJs</a></li>
                 </ul>
             </div>
         </li>
@@ -55,7 +60,8 @@
             </a>
             <div class="collapse" id="tables">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic
+                    <li class="nav-item"> <a class="nav-link"
+                            href="{{ asset('backend') }}/pages/tables/basic-table.html">Basic
                             table</a></li>
                 </ul>
             </div>
@@ -68,7 +74,8 @@
             </a>
             <div class="collapse" id="icons">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a>
+                    <li class="nav-item"> <a class="nav-link" href="{{ asset('backend') }}/pages/icons/mdi.html">Mdi
+                            icons</a>
                     </li>
                 </ul>
             </div>
@@ -81,9 +88,11 @@
             </a>
             <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a>
+                    <li class="nav-item"> <a class="nav-link" href="{{ asset('backend') }}/pages/samples/login.html">
+                            Login </a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html">
+                    <li class="nav-item"> <a class="nav-link"
+                            href="{{ asset('backend') }}/pages/samples/register.html">
                             Register </a></li>
                 </ul>
             </div>
@@ -96,15 +105,17 @@
             </a>
             <div class="collapse" id="error">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404
+                    <li class="nav-item"> <a class="nav-link"
+                            href="{{ asset('backend') }}/pages/samples/error-404.html"> 404
                         </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500
+                    <li class="nav-item"> <a class="nav-link"
+                            href="{{ asset('backend') }}/pages/samples/error-500.html"> 500
                         </a></li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/documentation/documentation.html">
+            <a class="nav-link" href="{{ asset('backend') }}/pages/documentation/documentation.html">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Documentation</span>
             </a>
